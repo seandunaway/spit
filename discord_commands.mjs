@@ -47,8 +47,8 @@ export let handlers = {
 
 export async function register_commands () {
     let body = Object.values (commands)
-    let rest = new REST () .setToken (config.discord_token)
-    let response = await rest .put (Routes.applicationCommands (config.discord_appid), { body })
+    let rest = new REST () .setToken (config.discord_secret)
+    let response = await rest .put (Routes.applicationCommands (config.discord_application), { body })
     return response
 }
 
