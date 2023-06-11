@@ -14,6 +14,13 @@ client .on ('interactionCreate', function (interaction) {
 })
 
 client .on ('ready', function (client) {
+    client.user.setPresence ({
+        activities: [{
+            type: 3,
+            name: '/spit',
+        }],
+    })
+
     console .log (new Date (), 'discord:', client.user.tag, 'ready!')
 })
 
