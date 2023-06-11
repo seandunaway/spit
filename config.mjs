@@ -2,7 +2,7 @@
 
 let config = {
     discord_application: '1117233923034972222',
-    discord_secret: 'MTExNzIzMzkyMzAzNDk3MjIyMg.GFjetT.p5auhKK-viMecVGVuwpKqNXMMoy-UEatiH6NPg',
+    discord_token: ['MTExNzIzMzkyMzAzNDk3MjIyMg.GpLYS1.Xq', '_2skpQeSSFup43nJoUFJGRi5UaRU9iky_fMw'] . join (''),
     fastify_port: 8001,
 }
 

@@ -17,4 +17,4 @@ client .on ('ready', function (client) {
     console .log (new Date (), client.user.tag, 'ready!')
 })
 
-client .login (config.discord_secret)
+client .login (config.discord_token)
