@@ -18,8 +18,8 @@ export let commands = {
                 .setDescription ('text')
                 .setMaxLength (128)
                 .setRequired (true)
-        })
-    ,
+        }),
+
     reset: new SlashCommandBuilder ()
         .setName ('reset')
         .setDescription ('reset'),
