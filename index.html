@@ -17,11 +17,8 @@ let spits_fetch = await fetch ('./spits.txt')
 let spits_text = await spits_fetch .text ()
 let spits_data = await spits_read (spits_text)
 
-console .log ('spoo_data', spoo_data)
-console .log ('spits_data', spits_data)
-
-let canvas = document .querySelector ('canvas');
-new Chart (canvas, {
+let chart_canvas = document .querySelector ('canvas');
+let chart_config = {
     data: {
         datasets: [
             {
@@ -32,15 +29,47 @@ new Chart (canvas, {
                     xAxisKey: 'timestamp',
                     yAxisKey: 'price',
                 },
+                fill: true,
+                order: 1,
+                pointRadius: 0,
+                pointHitRadius: 0,
+                spanGaps: true,
             },
         ],
     },
     options: {
+        plugins: {
+            legend: {
+                labels: {
+                    filter: function (legendItem, chartData) {
+                        return legendItem.text != 'price'
+                    }
+                }
+            },
+            tooltip: {
+                footerFont: {
+                    size: 18,
+                },
+                callbacks: {
+                    footer: function (tooltipItems) {
+                        return tooltipItems[0].raw.spit ?? false
+                    },
+                },
+            },
+        },
         scales: {
             x: {
-                type: 'time',
                 grid: {
                     display: false,
+                },
+                type: 'time',
+                time: {
+                    unit: 'hour',
+                },
+                ticks: {
+                    major: {
+                        enabled: true,
+                    },
                 },
             },
             y: {
@@ -49,10 +78,51 @@ new Chart (canvas, {
                 },
             },
         },
-
-        pointStyle: false,
+        pointRadius: 12,
+        pointHitRadius: 12,
+        pointHoverRadius: 12,
         tension: 0.25,
     }
-})
+}
+
+// haxor
+let spits_on_spoo = {}
+for (let spit of spits_data) {
+    if (spit.timestamp < spoo_data .at (0) .timestamp || spit.timestamp > (spoo_data .at (-1) .timestamp + 1_200_000)) continue
+
+    let price
+
+    for (let spoo of spoo_data) {
+        price = spoo.price
+
+        let delta = spit.timestamp - spoo.timestamp
+        if (delta < 0) break
+    }
+
+    if (! spits_on_spoo[spit.user])
+        spits_on_spoo[spit.user] = []
+    let item = {
+        timestamp: spit.timestamp,
+        spit: spit.spit,
+        price,
+    }
+    spits_on_spoo[spit.user] .push (item)
+}
+
+for (let spits in spits_on_spoo) {
+    let dataset = {
+        type: 'line',
+        label: spits,
+        data: spits_on_spoo[spits],
+        parsing: {
+            xAxisKey: 'timestamp',
+            yAxisKey: 'price',
+        },
+        showLine: false,
+    }
+    chart_config.data.datasets .push (dataset)
+}
+
+let chart = new Chart (chart_canvas, chart_config)
 
 </script>

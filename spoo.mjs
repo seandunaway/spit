@@ -15,7 +15,7 @@ export async function yfinance () {
     } catch { return }
 
     let spoo = []
-    for (let i = 0; i <= result.timestamp.length; i++) {
+    for (let i = 0; i < result.timestamp.length; i++) {
         let date = new Date (result.timestamp[i] * 1000)
 
         let timestamp = date.getTime ()
