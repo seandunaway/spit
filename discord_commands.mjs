@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-import { config as dotenv } from 'dotenv'
+import config from './config.mjs'
 import { SlashCommandBuilder, REST, Routes } from 'discord.js'
 import { new_spit, append as spit_append, reset as spit_reset } from './spits.mjs'
-
-dotenv ()
 
 export let commands = {
     ping: new SlashCommandBuilder ()
@@ -49,8 +47,8 @@ export let handlers = {
 
 export async function register_commands () {
     let body = Object.values (commands)
-    let rest = new REST () .setToken (process.env.DISCORD_TOKEN)
-    let response = await rest .put (Routes.applicationCommands (process.env.DISCORD_APPLICATION_ID), { body })
+    let rest = new REST () .setToken (config.discord_token)
+    let response = await rest .put (Routes.applicationCommands (config.discord_appid), { body })
     return response
 }
 

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-import { config as dotenv } from 'dotenv'
+import config from './config.mjs'
 import { Client } from 'discord.js'
 import { handlers } from './discord_commands.mjs'
-
-dotenv ()
 
 export let client = new Client ({ intents: 1 })
 
@@ -19,4 +17,4 @@ client .on ('ready', function (client) {
     console .log (new Date (), client.user.tag, 'ready!')
 })
 
-client .login (process.env.DISCORD_TOKEN)
+client .login (config.discord_token)
