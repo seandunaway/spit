@@ -86,12 +86,14 @@ let chart_config = {
 }
 
 // haxor
+// @todo: module
+// @todo: chart min max
 let spits_on_spoo = {}
 for (let spit of spits_data) {
-    if (spit.timestamp < spoo_data .at (0) .timestamp || spit.timestamp > (spoo_data .at (-1) .timestamp + 1_200_000)) continue
+    if (spit.timestamp < spoo_data .at (0) .timestamp) continue
+    if (spit.timestamp > spoo_data .at (-1) .timestamp + 20 * 60 * 1000) continue
 
     let price
-
     for (let spoo of spoo_data) {
         price = spoo.price
 
