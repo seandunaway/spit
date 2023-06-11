@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-export async function yfinance () {
+export default async function () {
     let base_url = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     let symbol = 'ES=F'
     let interval = '5m'
@@ -29,6 +29,3 @@ export async function yfinance () {
     }
     return spoo
 }
-
-export default await yfinance ()
-

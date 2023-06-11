@@ -25,8 +25,9 @@ fastify.get ('/spits.txt', function (request, reply) {
     reply.send (file)
 })
 
-fastify.get ('/spoo.json', function (request, reply) {
-    reply.send (spoo)
+fastify.get ('/spoo.json', async function (request, reply) {
+    let spoo_result = await spoo ()
+    reply.send (spoo_result)
 })
 
 fastify .listen ({ port: config.fastify_port, host: '0.0.0.0' }, function (error, address) {
