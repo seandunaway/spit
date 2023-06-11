@@ -29,7 +29,7 @@ fastify.get ('/spoo.json', function (request, reply) {
     reply.send (spoo)
 })
 
-fastify .listen ({ port: config.fastify_port }, function (error, address) {
+fastify .listen ({ port: config.fastify_port, host: '0.0.0.0' }, function (error, address) {
     console .log (new Date (), 'fastify:', address, 'ready!')
 })
 
