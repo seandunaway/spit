@@ -3,3 +3,59 @@
     <title>spit</title>
 </head>
 <canvas></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+
+<script type="module">
+
+import { read as spits_read } from './spits_browser.mjs'
+
+let spoo_fetch = await fetch ('./spoo.json')
+let spoo_data = await spoo_fetch .json ()
+
+let spits_fetch = await fetch ('./spits.txt')
+let spits_text = await spits_fetch .text ()
+let spits_data = await spits_read (spits_text)
+
+console .log ('spoo_data', spoo_data)
+console .log ('spits_data', spits_data)
+
+let canvas = document .querySelector ('canvas');
+new Chart (canvas, {
+    data: {
+        datasets: [
+            {
+                type: 'line',
+                label: 'price',
+                data: spoo_data,
+                parsing: {
+                    xAxisKey: 'timestamp',
+                    yAxisKey: 'price',
+                },
+            },
+        ],
+    },
+    options: {
+        scales: {
+            x: {
+                type: 'time',
+                grid: {
+                    display: false,
+                },
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+            },
+        },
+
+        pointStyle: false,
+        tension: 0.25,
+    }
+})
+
+</script>

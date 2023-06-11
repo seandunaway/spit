@@ -13,9 +13,9 @@ fastify.get ('/', function (request, reply) {
     reply.send (file)
 })
 
-fastify.get ('/spits.mjs', function (request, reply) {
+fastify.get ('/spits_browser.mjs', function (request, reply) {
     reply.type ('text/javascript')
-    let file = createReadStream ('./spits.mjs')
+    let file = createReadStream ('./spits_browser.mjs')
     reply.send (file)
 })
 
