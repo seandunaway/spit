@@ -4,7 +4,7 @@ import config from './config.mjs'
 import { Client } from 'discord.js'
 import { handlers } from './discord_commands.mjs'
 
-export let client = new Client ({ intents: 1 })
+let client = new Client ({ intents: 1 })
 
 client .on ('interactionCreate', function (interaction) {
     if (! interaction.isChatInputCommand) return
@@ -14,7 +14,9 @@ client .on ('interactionCreate', function (interaction) {
 })
 
 client .on ('ready', function (client) {
-    console .log (new Date (), client.user.tag, 'ready!')
+    console .log (new Date (), 'discord:', client.user.tag, 'ready!')
 })
 
 client .login (config.discord_token)
+
+export default client
