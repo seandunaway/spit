@@ -17,10 +17,11 @@ export function new_spit (options) {
 }
 
 export async function read () {
-    let file_contents = await readFile (options.file, { encoding: 'utf8' })
-    let lines = file_contents .split ("\n")
-
     let data = []
+    let file_contents = await readFile (options.file, { encoding: 'utf8' })
+    if (! file_contents) return data
+
+    let lines = file_contents .split ("\n")
     for (let line of lines) {
         if (! line) continue
 
