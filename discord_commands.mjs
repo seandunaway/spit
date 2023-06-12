@@ -20,6 +20,10 @@ export let commands = {
                 .setRequired (true)
         }),
 
+    link: new SlashCommandBuilder ()
+        .setName ('link')
+        .setDescription ('link'),
+
     reset: new SlashCommandBuilder ()
         .setName ('reset')
         .setDescription ('reset'),
@@ -37,6 +41,10 @@ export let handlers = {
         })
         spit_append (spit)
         interaction.reply (`${interaction.user},  :raised_hands:  ${interaction.options .getString ('text')}`)
+    },
+
+    link: function (interaction) {
+        interaction.reply (`${interaction.user},  :nerd:  ${config.url}`)
     },
 
     reset: function (interaction) {
