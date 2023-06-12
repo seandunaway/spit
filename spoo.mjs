@@ -4,7 +4,7 @@ export default async function () {
     let base_url = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     let symbol = 'ES=F'
     let interval = '2m'
-    let range = '1d'
+    let range = '5d'
     let url = `${base_url}${symbol}?&interval=${interval}&range=${range}`
 
     let result

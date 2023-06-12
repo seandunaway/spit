@@ -4,8 +4,10 @@
 </head>
 <canvas></canvas>
 
+<script src="https://cdn.jsdelivr.net/npm/hammerjs"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
 <script type="module">
 
 import { read as spits_read } from './spits_browser.mjs'
@@ -58,6 +60,31 @@ let chart_config = {
                     },
                 },
             },
+            zoom: {
+                pan: {
+                    enabled: true,
+                    mode: 'x',
+                },
+                limits: {
+                    x: {
+                        min: 'original',
+                        max: 'original'
+                    },
+                },
+                zoom: {
+                    wheel: {
+                        enabled: false,
+                        speed: 0.02,
+                    },
+                    pinch: {
+                        enabled: false,
+                    },
+                    drag: {
+                        enabled: true,
+                    },
+                    mode: 'x',
+                },
+            },
         },
         scales: {
             x: {
@@ -87,9 +114,8 @@ let chart_config = {
     }
 }
 
-// haxor
-// @todo: module
-// @todo: chart min max
+// @todo: move to module
+// @todo: configurable spoo interval and range
 let spits_on_spoo = {}
 for (let spit of spits_data) {
     if (spit.timestamp < spoo_data .at (0) .timestamp) continue
@@ -128,5 +154,12 @@ for (let spits in spits_on_spoo) {
 }
 
 let chart = new Chart (chart_canvas, chart_config)
+
+chart.zoom (1.9, 'delay')
+chart.pan (-1000000000, [chart.scales.x], 'delay')
+
+chart_canvas.addEventListener ('dblclick', function (event) {
+    chart.resetZoom ()
+})
 
 </script>
