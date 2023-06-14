@@ -31,7 +31,7 @@ export let commands = {
 
 export let handlers = {
     ping: function (interaction) {
-        interaction.reply (`${interaction.user},  :wave:`)
+        interaction.reply (`pong`)
     },
 
     spit: function (interaction) {
@@ -40,16 +40,16 @@ export let handlers = {
             spit: interaction.options .getString ('text')
         })
         spit_append (spit)
-        interaction.reply (`${interaction.user},  :raised_hands:  ${interaction.options .getString ('text')}`)
+        interaction.reply (`${interaction.options .getString ('text')}`)
     },
 
     link: function (interaction) {
-        interaction.reply (`${interaction.user},  :nerd:  ${config.url}`)
+        interaction.reply (`${config.url}`)
     },
 
     reset: function (interaction) {
         spit_reset ()
-        interaction.reply (`${interaction.user},  :ok_hand:`)
+        interaction.reply (`okay`)
     },
 }
 
