@@ -25,7 +25,7 @@ export async function read () {
     for (let line of lines) {
         if (! line) continue
 
-        let record = JSON.parse (line)
+        let record = JSON .parse (line)
         data .push (record)
     }
     return data
@@ -34,7 +34,7 @@ export async function read () {
 export async function append (record) {
     if (! record) return
 
-    let line = JSON.stringify (record) + "\n"
+    let line = JSON .stringify (record) + "\n"
     await appendFile (options.file, line)
 }
 

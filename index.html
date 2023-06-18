@@ -156,11 +156,11 @@ for (let spits in spits_on_spoo) {
 
 let chart = new Chart (chart_canvas, chart_config)
 
-chart.zoom (1.9, 'delay')
-chart.pan (-1000000000, [chart.scales.x], 'delay')
+chart .zoom (1.9, 'delay')
+chart .pan (-1000000000, [chart.scales.x], 'delay')
 
-chart_canvas.addEventListener ('dblclick', function (event) {
-    chart.resetZoom ()
+chart_canvas .addEventListener ('dblclick', function (event) {
+    chart .resetZoom ()
 })
 
 </script>

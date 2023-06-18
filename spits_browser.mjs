@@ -8,7 +8,7 @@ export async function read (text) {
     for (let line of lines) {
         if (! line) continue
 
-        let record = JSON.parse (line)
+        let record = JSON .parse (line)
         data .push (record)
     }
     return data

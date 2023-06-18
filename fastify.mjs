@@ -7,27 +7,27 @@ import spoo from './spoo.mjs'
 
 let fastify = new_fastify ()
 
-fastify.get ('/', function (request, reply) {
-    reply.type ('text/html')
+fastify .get ('/', function (request, reply) {
+    reply .type ('text/html')
     let file = createReadStream ('./index.html')
-    reply.send (file)
+    reply .send (file)
 })
 
-fastify.get ('/spits_browser.mjs', function (request, reply) {
-    reply.type ('text/javascript')
+fastify .get ('/spits_browser.mjs', function (request, reply) {
+    reply .type ('text/javascript')
     let file = createReadStream ('./spits_browser.mjs')
-    reply.send (file)
+    reply .send (file)
 })
 
-fastify.get ('/spits.txt', function (request, reply) {
-    reply.type ('text/plain')
+fastify .get ('/spits.txt', function (request, reply) {
+    reply .type ('text/plain')
     let file = createReadStream ('./spits.txt')
-    reply.send (file)
+    reply .send (file)
 })
 
-fastify.get ('/spoo.json', async function (request, reply) {
+fastify .get ('/spoo.json', async function (request, reply) {
     let spoo_result = await spoo ()
-    reply.send (spoo_result)
+    reply .send (spoo_result)
 })
 
 fastify .listen ({ port: config.fastify_port, host: config.fastify_host }, function (error, address) {

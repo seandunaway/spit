@@ -10,7 +10,7 @@ export default async function () {
     let result
     try {
         let response = await fetch (url)
-        let json = await response.json ()
+        let json = await response .json ()
         result = json.chart.result[0]
     } catch { return }
 
@@ -18,7 +18,7 @@ export default async function () {
     for (let i = 0; i < result.timestamp.length; i++) {
         let date = new Date (result.timestamp[i] * 1000)
 
-        let timestamp = date.getTime ()
+        let timestamp = date .getTime ()
         let price = result.indicators.quote[0].close[i]
 
         let quote = {

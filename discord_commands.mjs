@@ -31,7 +31,7 @@ export let commands = {
 
 export let handlers = {
     ping: function (interaction) {
-        interaction.reply (`pong`)
+        interaction .reply (`pong`)
     },
 
     spit: function (interaction) {
@@ -40,23 +40,23 @@ export let handlers = {
             spit: interaction.options .getString ('text')
         })
         spit_append (spit)
-        interaction.reply (`${interaction.options .getString ('text')}`)
+        interaction .reply (`${interaction.options .getString ('text')}`)
     },
 
     link: function (interaction) {
-        interaction.reply (`${config.url}`)
+        interaction .reply (`${config.url}`)
     },
 
     reset: function (interaction) {
         spit_reset ()
-        interaction.reply (`okay`)
+        interaction .reply (`okay`)
     },
 }
 
 export async function register_commands () {
-    let body = Object.values (commands)
+    let body = Object .values (commands)
     let rest = new REST () .setToken (config.discord_token)
-    let response = await rest .put (Routes.applicationCommands (config.discord_application), { body })
+    let response = await rest .put (Routes .applicationCommands (config.discord_application), { body })
     return response
 }
 

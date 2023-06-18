@@ -14,7 +14,7 @@ client .on ('interactionCreate', function (interaction) {
 })
 
 client .on ('ready', function (client) {
-    client.user.setPresence ({
+    client.user .setPresence ({
         activities: [{
             type: 3,
             name: '/spit',
