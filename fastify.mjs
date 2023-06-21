@@ -3,6 +3,7 @@
 import config from './config.mjs'
 import { createReadStream } from 'node:fs'
 import new_fastify from 'fastify'
+import { new_spit, append as spits_append } from './spits.mjs'
 import spoo from './spoo.mjs'
 
 let fastify = new_fastify ()
@@ -23,6 +24,15 @@ fastify .get ('/spits.txt', function (request, reply) {
     reply .type ('text/plain')
     let file = createReadStream ('./spits.txt')
     reply .send (file)
+})
+
+fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.{1,128}$)', function (request, reply) {
+    let spit = new_spit ({
+        user: request.params.user,
+        spit: request.params.spit,
+    })
+    spits_append (spit)
+    reply.send ('ok')
 })
 
 fastify .get ('/spoo.json', async function (request, reply) {
