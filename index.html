@@ -123,11 +123,18 @@ for (let spit of spits_data) {
     if (spit.timestamp > spoo_data .at (-1) .timestamp + 20 * 60 * 1000) continue
 
     let price
+    let prev_delta = 0
     for (let spoo of spoo_data) {
+        var delta = spit.timestamp - spoo.timestamp
+        if (delta < 0) {
+            // found a negative (went past time)
+            if (prev_delta > -delta) {
+                price = spoo.price
+            }
+            break;
+        }
         price = spoo.price
-
-        let delta = spit.timestamp - spoo.timestamp
-        if (delta < 0) break
+        prev_delta = delta
     }
 
     if (! spits_on_spoo[spit.user])
