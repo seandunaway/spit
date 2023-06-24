@@ -21,6 +21,8 @@ export default async function () {
         let timestamp = date .getTime ()
         let price = result.indicators.quote[0].close[i]
 
+        if (! price) continue
+
         let quote = {
             timestamp,
             price,
