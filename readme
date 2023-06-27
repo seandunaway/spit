@@ -1,5 +1,5 @@
 # invite
-https://discord.com/api/oauth2/authorize?client_id=1117233923034972222&permissions=51200&scope=bot
+https://discord.com/api/oauth2/authorize?client_id=1117233923034972222&permissions=2048&scope=bot
 
 # install
 npm install
