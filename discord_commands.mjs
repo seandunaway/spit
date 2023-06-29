@@ -34,6 +34,15 @@ export let handlers = {
     link: function (interaction) {
         interaction .reply (`${config.url}`)
     },
+
+    '📌': function (reaction) {
+        let spit = new_spit ({
+            user: reaction.message.author.username,
+            spit: reaction.message.content.substring(0, 128),
+        })
+        spit_append (spit)
+        reaction.message .react ('✅')
+    }
 }
 
 export async function register_commands () {
