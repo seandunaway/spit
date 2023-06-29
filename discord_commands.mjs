@@ -36,6 +36,7 @@ export let handlers = {
 
     '📌': function (reaction) {
         let spit = new_spit ({
+            timestamp: reaction.message.createdTimestamp,
             user: reaction.message.author.username,
             spit: reaction.message.content,
         })
