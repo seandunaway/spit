@@ -13,8 +13,8 @@ export function new_spit (options) {
         spit: undefined,
         ... options
     }
-    if (spit.user || spit.spit) return false
-    spit.spit = spit.spit.substring(0, 127)
+    if (! spit.user || ! spit.spit) return false
+    spit.spit = spit.spit .substring(0, 127)
     return spit
 }
 
