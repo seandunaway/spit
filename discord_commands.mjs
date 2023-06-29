@@ -33,9 +33,7 @@ export let handlers = {
     link: function (interaction) {
         interaction .reply (`${config.url}`)
     },
-}
 
-export let reactions = {
     '💦': function (reaction) {
         let spit = new_spit ({
             timestamp: reaction.message.createdTimestamp,

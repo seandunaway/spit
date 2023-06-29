@@ -2,7 +2,7 @@
 
 import config from './config.mjs'
 import { Client } from 'discord.js'
-import { handlers, reactions } from './discord_commands.mjs'
+import { handlers } from './discord_commands.mjs'
 
 let client = new Client ({ intents: 34305 })
 
@@ -17,7 +17,7 @@ client .on ('messageReactionAdd', function (reaction) {
     if (reaction.message.author?.id == client.user?.id) return
     if (reaction.count != 1) return
     try {
-        reactions[reaction.emoji.name] (reaction)
+        handlers[reaction.emoji.name] (reaction)
     } catch { return }
 })
 
