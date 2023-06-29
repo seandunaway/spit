@@ -15,6 +15,7 @@ client .on ('interactionCreate', function (interaction) {
 
 client .on ('messageReactionAdd', function (reaction) {
     if (reaction.message.author?.id == client.user?.id) return
+    if (reaction.count != 1) return
     try {
         handlers[reaction.emoji.name] (reaction)
     } catch { return }
