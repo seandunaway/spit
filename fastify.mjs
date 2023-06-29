@@ -32,7 +32,7 @@ fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.{1,128}$)', function (request, rep
         spit: request.params.spit,
     })
     spits_append (spit)
-    reply.send ('ok')
+    reply.send ("okay\n")
 })
 
 fastify .get ('/spoo.json', async function (request, reply) {
