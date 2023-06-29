@@ -41,7 +41,6 @@ export let handlers = {
             spit: reaction.message.content,
         })
         spit_append (spit)
-        reaction.message .react ('✔️')
     }
 }
 
