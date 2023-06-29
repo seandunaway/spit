@@ -5,10 +5,6 @@ import { SlashCommandBuilder, REST, Routes } from 'discord.js'
 import { new_spit, append as spit_append, reset as spit_reset } from './spits.mjs'
 
 export let commands = {
-    // ping: new SlashCommandBuilder ()
-    //     .setName ('ping')
-    //     .setDescription ('ping'),
-
     spit: new SlashCommandBuilder ()
         .setName ('spit')
         .setDescription ('spit')
@@ -23,17 +19,9 @@ export let commands = {
     link: new SlashCommandBuilder ()
         .setName ('link')
         .setDescription ('link'),
-
-    // reset: new SlashCommandBuilder ()
-    //     .setName ('reset')
-    //     .setDescription ('reset'),
 }
 
 export let handlers = {
-    ping: function (interaction) {
-        interaction .reply (`pong`)
-    },
-
     spit: function (interaction) {
         let spit = new_spit ({
             user: interaction.user.username,
@@ -45,11 +33,6 @@ export let handlers = {
 
     link: function (interaction) {
         interaction .reply (`${config.url}`)
-    },
-
-    reset: function (interaction) {
-        spit_reset ()
-        interaction .reply (`okay`)
     },
 }
 
