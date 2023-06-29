@@ -2,7 +2,7 @@
 
 import config from './config.mjs'
 import { SlashCommandBuilder, REST, Routes } from 'discord.js'
-import { new_spit, append as spit_append, reset as spit_reset } from './spits.mjs'
+import { new_spit, append as spit_append } from './spits.mjs'
 
 export let commands = {
     spit: new SlashCommandBuilder ()
