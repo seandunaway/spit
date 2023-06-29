@@ -33,15 +33,17 @@ export let handlers = {
     link: function (interaction) {
         interaction .reply (`${config.url}`)
     },
+}
 
-    '📌': function (reaction) {
+export let reactions = {
+    '💦': function (reaction) {
         let spit = new_spit ({
             timestamp: reaction.message.createdTimestamp,
             user: reaction.message.author.username,
             spit: reaction.message.content,
         })
         spit_append (spit)
-        reaction.message .react ('✅')
+        reaction.message .react ('✔️')
     }
 }
 
