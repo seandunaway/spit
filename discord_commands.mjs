@@ -12,7 +12,6 @@ export let commands = {
             return option
                 .setName ('text')
                 .setDescription ('text')
-                .setMaxLength (128)
                 .setRequired (true)
         }),
 
@@ -38,7 +37,7 @@ export let handlers = {
     '📌': function (reaction) {
         let spit = new_spit ({
             user: reaction.message.author.username,
-            spit: reaction.message.content.substring(0, 128),
+            spit: reaction.message.content,
         })
         spit_append (spit)
         reaction.message .react ('✅')

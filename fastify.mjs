@@ -26,7 +26,7 @@ fastify .get ('/spits.txt', function (request, reply) {
     reply .send (file)
 })
 
-fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.{1,128}$)', function (request, reply) {
+fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.+$)', function (request, reply) {
     let spit = new_spit ({
         user: request.params.user,
         spit: request.params.spit,
