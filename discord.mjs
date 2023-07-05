@@ -21,6 +21,15 @@ client .on ('messageReactionAdd', function (reaction) {
     } catch { return }
 })
 
+client .on ('announce_spit', async function (spit) {
+    for (let channel_id of config.channels_announce_spit) {
+        let channel = await client.channels .fetch (channel_id)
+        if (! channel) return
+        if (! channel .isTextBased()) return
+        channel .send (`${spit.user}: ${spit.spit}`)
+    }
+})
+
 client .on ('ready', function (client) {
     client.user .setPresence ({
         activities: [{
