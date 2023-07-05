@@ -5,7 +5,6 @@ import { createReadStream } from 'node:fs'
 import new_fastify from 'fastify'
 import { new_spit, append as spits_append } from './spits.mjs'
 import spoo from './spoo.mjs'
-import discord from './discord.mjs'
 
 let fastify = new_fastify ()
 
@@ -27,7 +26,7 @@ fastify .get ('/spits.txt', function (request, reply) {
     reply .send (file)
 })
 
-fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.+$)', function (request, reply) {
+fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.+$)', async function (request, reply) {
     let spit = new_spit ({
         user: request.params.user,
         spit: request.params.spit,
@@ -35,7 +34,8 @@ fastify .get ('/spit/:user(^.{1,16}$)/:spit(^.+$)', function (request, reply) {
     spits_append (spit)
     reply .send ("okay\n")
 
-    discord .emit ('announce_spit', spit)
+    let discord = await import('./discord.mjs')
+    discord.default .emit ('announce_spit', spit)
 })
 
 fastify .get ('/spoo.json', async function (request, reply) {
