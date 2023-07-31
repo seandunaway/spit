@@ -7,7 +7,7 @@ let config = {
     fastify_port: 8001,
     fastify_host: '0.0.0.0',
     url: 'http://devel.seandunaway.com:8001/',
-    channels_announce_spit: ['1100340702916915245'],
+    channels_announce_spit: ['1135323359316541574'],
 }
 
 Object .assign (config, process.env)
